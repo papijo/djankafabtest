@@ -1,0 +1,38 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.name }} {% else %} Contact Us {% endif %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="jumbotron text-center">
+      <h1 class="NTpagesContent"><i class="fas fa-phone"></i> Contact Us</h1>
+     
+
+  </div>
+
+  <div class="container">
+      <h1 class="contactUS">We Love Your Feedback</h1>
+
+          <div class="row">
+            <div class="col-md-6">
+                <p> 
+                    We want to keep improving our products and services and to do that, we need your help; so feel free to contact us anytime.
+                    <br>
+                    You can contact us via: <br>
+                    <i class="fas fa-mail-bulk"></i> email us at ankaraclothingandmore@gmail.com <br>
+                    <i class="fas fa-phone"></i> call us on +233 5454 18699 or 0559223614. <br>            
+                </p>
+              </div>
+              
+
+                <div class="col-md-6">
+                        <h3 class="contactUS">Follow us on Social Media</h3>
+                        <a class="btn btn-dark" href="http://www.facebook.com/Ankarafabricsandmore/"> <i class="fab fa-facebook"></i> </a>
+                        <a class="btn btn-dark" href="http://www.instagram.com/ankarafabrics_and_more/"><i class="fab fa-instagram"></i></a>
+                
+            </div>
+         </div>
+</div>
+{% endblock %}

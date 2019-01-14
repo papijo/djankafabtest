@@ -1,0 +1,42 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.name }} {% else %} Ankara Home {% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- Header - set the background image for the header in the line below -->
+<header class="py-5 bg-image-full" style="background-image: url('../../../static/img/index2.jpeg');">
+  <img class="img-fluid d-block mx-auto rounded animated pulse " src="../../../static/img/default.jpg" alt="">
+</header>
+
+<!-- Content section -->
+<section class="py-5">
+  <div class="container text-center">
+    <h1>Home of Ankara's Best</h1>
+    <p class="lead">Unyielding Quality, Uncompromising Beauty, Unending Loyalty </p>
+    <p>These are the qualities we stand by at Ankara Fabrics & More and promise to deliver.</p>
+    <a class="btn btn-outline-dark indexBtn" href="{% url 'shop:product_list' %}">Step into our shop to discover the <b><i>Lastest</i></b> and<b><i> Best</i> </b>in African Print</a>
+  </div>
+</section>
+
+<!-- Image Section - set the background image for the header in the line below -->
+<section class="py-5 bg-image-full" style="background-image: url('../../../static/img/index1.jpeg');">
+  <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
+  <div style="height: 200px;"></div>
+</section>
+
+<!-- Content section -->
+<section class="py-5">
+  <div class="container text-center">
+    <h1>Talent Hunt</h1>
+    <p class="lead">Vendor, Tailor or Fashion Designer</p>
+    <p>We at Ankara Fabrics & More appreciate talent wherever we see it. We believe in nurturing it so it can blossom to its fullest potential.</p>
+    <a class="btn btn-outline-dark indexBtn" href="{% url 'shop:contactus' %}">Contact Us if you want to sell your products/services on our platform. </a>
+  </div>
+</section>
+
+{% endblock %}

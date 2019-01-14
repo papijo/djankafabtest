@@ -1,0 +1,96 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.name }} {% else %} Products {% endif %}
+{% endblock %}
+
+{% block content %}
+   <div class="container">
+      <div class="row">
+
+        <div class="col-md-10 blog-main">
+
+          <div class="blog-post">
+              <p  class=" shopTitle">Product Detail</p>
+              
+              <div class="row">
+
+                
+                        
+                   
+                        <div class="col-md-4">
+                            
+                            <img class="rounded" src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." style="height: 200px; width: 200px">
+                            <p class="productName">{{ product.name }}</p>
+                            <p class="productName">{{ product.type }}</p>
+                            <p class="text-left"><kbd style="color: #ff5349">Ghc. {{ product.price }}</kbd></p>
+                            <p>{{ product.description }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            
+                                <h3><a class="text-center " style="color: #9f1d35" href="{{ product.category.get_absolute_url }}">Category: {{ product.category }}</a></h3>
+                            
+                            
+                            <div class="col-md-4">
+                            <form class="" action="{% url 'cart:cart_add' product.id %}" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                {{ cart_product_form }}
+                                <br>
+                                <br>
+                                <button class="btn btn-outline-dark" type="submit" >Add to Cart</button>
+                                    </div>
+                                <div class="col-sm-4">
+                                    
+                                </div>
+                            </div>
+                            </form>                            
+                            </div>
+                            
+                           
+                        </div>
+                    
+                
+              </div>
+
+
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-md-2  blog-sidebar">
+                <div class="sidebar-module">
+                  <h4><i class="fas fa-list-alt categorySidebar"></i> All Products</h4>
+                  <ol class="list-unstyled">
+                    <li {% if not category %} class="active"{% endif %}><a class="categoryList categorySidebar" href="{% url 'shop:product_list' %}">All</a></li>
+                  {% for c in categories %}
+      
+                    <li {% if category.slug == c.slug %} class="active"{% endif %}>
+                        <a class="categoryList categorySidebar" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                    </li>
+                  {% endfor %}
+                  </ol>
+                </div>
+
+                
+
+               
+                <!--Place Code here for anything below category sidebar-->
+
+                <div>
+                        <img src="{% static 'img/sell1.jpg' %}" class="img-thumbnail" >
+                  </div>
+              </div><!-- /.blog-sidebar -->
+
+              <div class="border">
+                    <img class="ImgMobileLong" src="{% static 'img/sell2.jpg' %}" >
+              </div>
+
+
+      </div><!-- /.row -->
+
+    
+
+    </div><!-- /.container -->
+{% endblock %}

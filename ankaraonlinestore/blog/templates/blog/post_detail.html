@@ -1,0 +1,42 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Ankara Blog  Detail
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+        <h1 class="text-center">Our Blog</h1>
+</div>
+        <div class= "container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                        <div>
+                                <img src="{% static 'img/sell3.jpg' %}" class="img-thumbnail" >
+                          </div>
+
+                </div>
+                <div class="col-md-8">
+                        <h2 class="text-center">{{post.title}}</h2>
+                        <p class="text-center"><i>by {{post.author}}</i> </p>
+                        <p><i> Posted on {{post.published_date}} </i> </p>
+                        <p class="text-justify">{{post.text}}</p>
+                        
+                        <img class="rounded " src="{% if post.image %} {{ post.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." style="height: 200px; width: 200px;">
+
+                          
+                        
+
+                </div>
+                <div class="col-md-2">
+                        <div>
+                                <img src="{% static 'img/sell1.jpg' %}" class="img-thumbnail" >
+                          </div>
+
+                </div>
+
+            </div> 
+        </div>
+                <br>
+                <br>
+{% endblock %}

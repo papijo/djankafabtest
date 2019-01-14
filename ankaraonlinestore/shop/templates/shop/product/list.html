@@ -1,0 +1,154 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+{% if category %}{{ category.name }} {% else %} {% if brand %}{{brand.name}} {% else %} {%if type %}{{ type.name }} {% else %} Ankara Online Shop {% endif %} {% endif %} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <h1 class="NTpagesContent"> <i class="fas fa-shopping-bag"></i> The SHOP</h1>
+    
+
+</div>
+
+<div class="container-fluid">
+        <div class="row">
+  
+          
+  
+          <div class="col-md-2  blog-sidebar">
+            <div class="sidebar-module">
+              <h4><i class="fas fa-list-alt categorySidebar"></i> Categories</h4>
+              <ol class="list-unstyled">
+                <li {% if not category %} class="active"{% endif %}><a class="categoryList categorySidebar" href="{% url 'shop:product_list' %}">All</a></li>
+              {% for c in categories %}
+  
+                <li {% if category.slug == c.slug %} class="active"{% endif %}>
+                    <a class="categoryList categorySidebar" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </li>
+              {% endfor %}
+              </ol>
+            </div>
+  
+            
+  
+            <div class="sidebar-module">
+                  <h4><i class="fas fa-list-alt categorySidebar"></i> Brands</h4>
+                  <ol class="list-unstyled">
+                    <li {% if not brand %} class="active"{% endif %}><a class="categoryList categorySidebar" href="{% url 'shop:product_list' %}">All</a></li>
+                  {% for b in brands %}
+      
+                    <li {% if brand.slug == b.slug %} class="active"{% endif %}>
+                        <a class="categoryList categorySidebar" href="{{ b.get_absolute_url }}">{{ b.name }}</a>
+                    </li>
+                  {% endfor %}
+                  </ol>
+                </div>
+  
+                <div class="sidebar-module">
+                      <h4><i class="fas fa-list-alt categorySidebar"></i> Types</h4>
+                      <ol class="list-unstyled">
+                        <li {% if not type %} class="active"{% endif %}><a class="categoryList categorySidebar" href="{% url 'shop:product_list' %}">All</a></li>
+                      {% for t in types %}
+          
+                        <li {% if type.slug == t.slug %} class="active"{% endif %}>
+                            <a class="categoryList categorySidebar" href="{{ t.get_absolute_url }}">{{ t.name }}</a>
+                        </li>
+                      {% endfor %}
+                      </ol>
+                    </div>
+       
+  
+            <!--Place Code here for anything below category sidebar-->
+          </div><!-- /.blog-sidebar -->
+
+          <div class="col-md-10 blog-main">
+  
+            <div class="blog-post">
+                <p class="text-center shopTitle">Our Wonderful {% if category %}{{ category.name }} {% else %} {% if brand %}{{brand.name}} {% else %} {%if type %}{{ type.name }} {% else %} {% endif %} {% endif %} {% endif %} Collection </p>
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-md-3" >
+                          <div class="thumbnail">
+                                  <p class="text-left">
+                                          <a class="productName" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                  </p>
+                              <a href="{{ product.get_absolute_url }}">
+                                  <img class="productImage rounded" src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="...">
+                              </a>
+                              <div class="caption">
+                                  
+                                  <p class="text-left"><kbd style="color: #ff5349">Ghc. {{ product.price }}</kbd></p>
+                                  
+                              </div>
+                              
+                          </div>
+                          
+                        </div>
+                        
+                    {% endfor %}
+                        <div class="container">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-end">
+                                  <li class="page-item">
+                                        {% if products.has_previous %}
+                                    <a class="page-link" href="?page={{ products.previous_page_number }}" tabindex="-1">Previous</a>
+                                        {% endif %}
+                                </li>
+                                
+                                
+                                
+                                <li class="page-item">
+                                        {% if products.has_next %}
+                                    <a class="page-link" href="?page={{ products.next_page_number }}">Next</a>
+                                        {% endif %}
+                                  </li>
+                                </ul>
+                              </nav>
+
+                        </div>
+                        <div>
+                            <img class="border rounded ImgMobileLong" src="{% static 'img/sell2.jpg' %}" >
+                        </div>
+                    
+                    <!--
+                    {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+-->
+
+
+    
+
+                </div>
+  
+  
+            </div><!-- /.blog-post -->
+  
+          </div><!-- /.blog-main -->
+  
+        </div><!-- /.row -->
+  
+      </div><!-- /.container -->
+
+
+{% endblock %}

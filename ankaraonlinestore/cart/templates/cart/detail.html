@@ -1,0 +1,78 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Your Shopping Cart
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 6%; color:#9f1d35">
+        <p class="shoppingCartHeader">
+            <span class="badge pull-right">
+                {% with totail_items=cart|length %}
+                    {% if cart|length > 0 %}
+                        Shopping Order:
+                        <a href="{% url 'cart:cart_detail' %}" style="color:#9f1d35">
+                            {{ totail_items }} item{{ totail_items|pluralize }}, Ghc. {{ cart.get_total_price }}
+                        </a>
+                        {% else %}
+                        Your cart is empty.
+                    {% endif %}
+                {% endwith %}
+            </span>
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead style="background-color: #9f1d35; color:#FFA987">
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Remove Item</th>
+                        <th>Unit Price</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in cart %}
+                    {% with product=item.product  %}
+                        <tr style="background-color:#FFA987; color:#9f1d35; font-weight: bold;">
+                            <td>
+                                <a href="{{ product.get__absolute_url }}">
+                                    <img class="rounded" src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." style="height: 130px; width: auto">
+                                </a>
+                            </td>
+                            <td>{{ product.name }}</td>
+                            <td>
+                                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                    {% csrf_token %}
+                                    {{ item.update_quantity_form.quantity }}
+                                    {{ item.update_quantity_form.update }}
+                                    <input type="submit" value="Update" class="btn btn-outline-dark">
+                                </form>
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-dark" href="{% url 'cart:cart_remove' product.id %}">Remove</a>
+                            </td>
+                            <td>Ghc. {{ item.price }}</td>
+                            <td>Ghc. {{ item.total_price }}</td>
+                        </tr>
+                    {% endwith %}
+                {% endfor %}
+                <tr style="background-color:#9f1d35; color:#FFA987">
+                    <td><b>Total</b></td>
+                    <td colspan="4"></td>
+                    <td colspan="num"><b>Ghc. {{ cart.get_total_price }}</b></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        
+            <a href="{% url 'shop:product_list' %}" class="btn btn-default" style="color:#9f1d35; font-style:italic;"><i class="fas fa-shopping-basket"></i> Continue Shopping</a>
+            <a href="{% url 'orders:order_create' %}" class="btn btn-default" style="color:#9f1d35; font-style:italic;"><i class="fas fa-shopping-cart"></i> Checkout</a>
+        
+        </div>
+    </div>
+{% endblock %}

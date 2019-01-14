@@ -1,0 +1,43 @@
+{% load static %}
+
+<!--TopNav-->
+
+<div class="topnav" id="myTopnav">
+        <a href="{% url 'shop:index' %}" id="home"><i class="fas fa-home"></i> Home</a>
+        <a href="{% url 'shop:product_list' %}" id="ourStock"><i class="fas fa-shopping-basket"></i> Our Shop</a>
+       
+        <a href="{% url 'blog:post_list' %}" id="blog"><i class = "fas fa-book"></i> Blog</a>
+
+        <a href="{% url 'shop:contactus' %}" id="contact"><i class="fas fa-phone"></i> Contact Us</a>
+        <a href="{% url 'shop:aboutus' %}" id="about"><i class="fas fa-users"></i> About Us</a>
+        
+        
+        
+        
+        
+        <a href="{% url 'cart:cart_detail' %}" id="shoppingCart"><i class="fas fa-shopping-cart"></i>
+            {% with totail_items=cart|length %}
+            {% if cart|length > 0 %}
+                
+                
+                :
+                    {{ totail_items }} item{{ totail_items|pluralize }}, Ghc. {{ cart.get_total_price }}
+                
+                {% else %}
+                 Your cart is empty.
+            {% endif %}
+            {% endwith %}
+        </a>
+      
+        
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+  <!--End of Top Nav-->
+
+
+
+
+
+

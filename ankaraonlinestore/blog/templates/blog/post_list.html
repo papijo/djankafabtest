@@ -1,0 +1,101 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Ankara Blog
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+        <h1 class="NTpagesContent text-center">Ankara Fabrics and More Blog</h1>
+        
+</div>
+
+<div class="container-fluid">          
+                        <div class="row">
+                            <div class="col-md-2 leftSideBar">
+                                    <h4><i class="fas fa-list-alt categorySidebar"></i> Tags</h4>
+                                    
+                                    <ol class="list-unstyled">
+                                            <li {% if not tag %} class="active"{% endif %}><a class="categoryList categorySidebar" href="{% url 'blog:post_list' %}">All</a></li>
+                                          
+                                            {% for t in tags %}
+
+                                            <li {% if tag.slug == t.slug %} class="active"{% endif %}>
+                                                <a class="categoryList categorySidebar" href="{{ t.get_absolute_url }}">{{ t.name }}</a>
+                                            </li>
+                                          {% endfor %}
+                                          </ol>
+                                          <br>
+                                          <div>
+                                                <img src="{% static 'img/sell1.jpg' %}" class="img-thumbnail" >
+                                          </div>
+
+                                   
+
+                            </div>
+                            
+                            <div class="col-md-8 mainBlog">
+                                    <h4 class="blogJumbo2 text-center"> <b>Everything you need to know and more....</b></h4>
+                                    
+                                    <p>Blog List Page: Page {{ posts.number }} of {{ posts.paginator.num_pages }}</p>
+                                    
+                                        <div class="row">
+                                                {% for post in posts %}
+                                            <div class="col-md-3 text-center">
+                                                
+
+                                                    <br>
+                                                    <a style="color:black;" href="{% url 'blog:post_detail' pk=post.pk %} ">
+                                                        <img class="rounded" src="{% if post.image %} {{ post.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." style="height: 175px; width: 100%">
+                                                        <h3>{{post.title}} </h3>
+                                                    </a>
+                                                        <p>{{ post.summary }}</p> 
+                                                        <p>Published: {{ post.published_date }}</p>
+                                                    
+                                                    
+                                            </div>
+                                            {% endfor %}  
+                                           
+                                            
+                                        </div> 
+                                        
+                                       
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-end">
+                                              <li class="page-item">
+                                                    {% if posts.has_previous %}
+                                                <a class="page-link" href="?page={{ posts.previous_page_number }}" tabindex="-1">Previous</a>
+                                                    {% endif %}
+                                            </li>
+                                            
+                                            
+                                            
+                                            <li class="page-item">
+                                                    {% if posts.has_next %}
+                                                <a class="page-link" href="?page={{ posts.next_page_number }}">Next</a>
+                                                    {% endif %}
+                                              </li>
+                                            </ul>
+                                          </nav>
+                                          
+
+                           </div>
+                           
+
+                           <div class="col-md-2 rightSidebar">
+                               
+
+                                <div>
+                                        <img src="{% static 'img/sell3.jpg' %}" class="img-thumbnail"" >
+                                  </div>
+
+                           </div>
+ 
+                        
+                        
+                        </div> <!--end of row-->
+
+                    
+                    
+</div>               
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Your Shopping Cart| Thank you
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row" style="margin-top: 6%">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="page-header">Thank You For Shopping With Us
+                </h3>
+                <p>Your order has been successfully completed. Your order number is <strong>{{ order.id }}</strong>.</p>
+                <h3> Mobile Money Payment</h3>
+                    <h5>You can make your Mobile Money Payment to the following Number:</h5>
+                    <p><i class="fas fa-phone">: +233 54541 8699 </i> </p>
+            </div>
+           
+                    
+                  
+        </div>
+    </div>
+{% endblock %}

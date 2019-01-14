@@ -1,0 +1,45 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.name }} {% else %} About Us {% endif %}
+{% endblock %}
+
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1 class="NTpagesContent"> <i class="fas fa-users"></i> About Us</h1>
+    
+
+</div>
+
+<div class="container">
+    <h2 class="text-center">Our Story</h2>
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-8">
+
+        
+    <p class="text-justify">
+            Ankara Fabrics and More is one of the fastest growing fabric dealerships in Ghana. With Our
+            vibrant, youthful, elegant and competitively priced fabrics, we are a class above other 
+            distributors. Our range of products include African Print, Kente, Senator Fabrics, Voile,
+            Silk Satin, Lace and Asoebi Fabrics. We are present in 3 West African cities namely Accra, 
+            Lome and Lagos.
+    </p>
+
+    <h3 class="text-center"> Our Social Responsibility</h3>
+    <p class="text-justify">
+            Ankara Fabrics isn't all about profit making or getting the next client; we are also a 
+            company deeply committed to improving our host communities and it's citizens.
+            <br>
+            It is in light of this way that we partnered with big time multi-media to feed 5000 street
+            children on a project dubbed the BOAFO HAPPY CHILD PROJECT. 
+    </p>
+</div>
+</div>
+
+</div>
+{% endblock %}
